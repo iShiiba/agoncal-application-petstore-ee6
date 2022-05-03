@@ -5,6 +5,7 @@ import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -14,6 +15,7 @@ import lombok.Setter;
 
 @Embeddable
 @Setter
+@Getter
 public class Address {
 
     // ======================================
@@ -57,31 +59,6 @@ public class Address {
     // =         Getters & setters          =
     // ======================================
 
-    public String getStreet1() {
-        return street1;
-    }
-
-    public String getStreet2() {
-        return street2;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-
-    public String getState() {
-        return state;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-
-    public String getCountry() {
-        return country;
-    }
 
     // ======================================
     // =   Methods hash, equals, toString   =

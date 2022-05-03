@@ -3,6 +3,7 @@ package org.agoncal.application.petstore.domain;
 import javax.persistence.*;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -12,6 +13,7 @@ import lombok.Setter;
 
 @Entity
 @Setter
+@Getter
 public class OrderLine {
 
     // ======================================
@@ -53,17 +55,6 @@ public class OrderLine {
     // = Getters & setters =
     // ======================================
 
-    public Long getId() {
-        return id;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public Item getItem() {
-        return item;
-    }
 
     // ======================================
     // = Methods hash, equals, toString =

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -19,16 +20,19 @@ import lombok.Setter;
 @Entity
 @NamedQueries({
         // TODO fetch doesn't work with GlassFish
-//        @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p LEFT JOIN FETCH p.items LEFT JOIN FETCH p.category WHERE p.category.name = :pname"),
+        // @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM
+        // Product p LEFT JOIN FETCH p.items LEFT JOIN FETCH p.category WHERE
+        // p.category.name = :pname"),
         @NamedQuery(name = Product.FIND_BY_CATEGORY_NAME, query = "SELECT p FROM Product p WHERE p.category.name = :pname"),
         @NamedQuery(name = Product.FIND_ALL, query = "SELECT p FROM Product p")
 })
 @XmlRootElement
 @Setter
+@Getter
 public class Product {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Id
@@ -51,14 +55,14 @@ public class Product {
     private List<Item> items;
 
     // ======================================
-    // =             Constants              =
+    // = Constants =
     // ======================================
 
     public static final String FIND_BY_CATEGORY_NAME = "Product.findByCategoryName";
     public static final String FIND_ALL = "Product.findAll";
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public Product() {
@@ -71,28 +75,8 @@ public class Product {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-
-
-    public String getDescription() {
-        return description;
-    }
-
-
-    public Category getCategory() {
-        return category;
-    }
-
 
     public void addItem(Item item) {
         if (items == null)
@@ -100,23 +84,21 @@ public class Product {
         items.add(item);
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
-
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Product))
+            return false;
 
         Product product = (Product) o;
 
-        if (!name.equals(product.name)) return false;
+        if (!name.equals(product.name))
+            return false;
 
         return true;
     }

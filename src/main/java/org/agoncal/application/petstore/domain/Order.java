@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -20,6 +21,7 @@ import lombok.Setter;
         @NamedQuery(name = Order.FIND_ALL, query = "SELECT o FROM Order o")
 })
 @Setter
+@Getter
 public class Order {
 
     // ======================================
@@ -96,37 +98,6 @@ public class Order {
     // ======================================
     // =         Getters & setters          =
     // ======================================
-
-    public Long getId() {
-        return id;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-
-
-    public List<OrderLine> getOrderLines() {
-        return orderLines;
-    }
-
-
-
-    public Address getDeliveryAddress() {
-        return deliveryAddress;
-    }
-
-
-
-    public CreditCard getCreditCard() {
-        return creditCard;
-    }
-
 
     public String getCreditCardNumber() {
         return creditCard.getCreditCardNumber();

@@ -10,6 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -25,6 +26,7 @@ import lombok.Setter;
 })
 @XmlRootElement
 @Setter
+@Getter
 public class Item {
 
     // ======================================
@@ -78,29 +80,6 @@ public class Item {
     // = Getters & setters =
     // ======================================
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Float getUnitCost() {
-        return unitCost;
-    }
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     // ======================================
     // = Methods hash, equals, toString =

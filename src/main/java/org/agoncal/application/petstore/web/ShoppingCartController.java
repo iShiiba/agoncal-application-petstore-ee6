@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -27,6 +28,7 @@ import lombok.Setter;
 @Loggable
 @CatchException
 @Setter
+@Getter
 public class ShoppingCartController extends Controller implements Serializable {
 
     // ======================================
@@ -35,12 +37,15 @@ public class ShoppingCartController extends Controller implements Serializable {
 
     @Inject
     @LoggedIn
+    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Instance<Customer> loggedInCustomer;
     @Inject
+    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private CatalogService catalogBean;
     @Inject
+    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private OrderService orderBean;
     @Inject
@@ -142,17 +147,6 @@ public class ShoppingCartController extends Controller implements Serializable {
         return loggedInCustomer.get();
     }
 
-    public CreditCard getCreditCard() {
-        return creditCard;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public Conversation getConversation() {
-        return conversation;
-    }
 
     public CreditCardType[] getCreditCardTypes() {
         return CreditCardType.values();

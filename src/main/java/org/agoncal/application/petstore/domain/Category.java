@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -28,6 +29,7 @@ import lombok.Setter;
 })
 @XmlRootElement
 @Setter
+@Getter
 public class Category {
 
     // ======================================
@@ -73,17 +75,6 @@ public class Category {
     // = Getters & setters =
     // ======================================
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
     public void addProduct(Product product) {
         if (products == null)
@@ -91,9 +82,6 @@ public class Category {
         products.add(product);
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
 
     // ======================================
     // = Methods hash, equals, toString =

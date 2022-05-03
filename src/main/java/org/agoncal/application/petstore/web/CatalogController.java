@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -25,6 +26,7 @@ import lombok.Setter;
 @Loggable
 @CatchException
 @Setter
+@Getter
 public class CatalogController extends Controller implements Serializable {
 
     // ======================================
@@ -33,6 +35,7 @@ public class CatalogController extends Controller implements Serializable {
 
     @Inject
     @Setter(AccessLevel.NONE)
+    @Getter(AccessLevel.NONE)
     private CatalogService catalogService;
 
     private String categoryName;
@@ -76,34 +79,4 @@ public class CatalogController extends Controller implements Serializable {
     // = Getters & setters =
     // ======================================
 
-    public Product getProduct() {
-        return product;
-    }
 
-    public Item getItem() {
-        return item;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }

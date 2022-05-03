@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import lombok.AccessLevel;
 import lombok.Setter;
+import lombok.Getter;
 
 /**
  * @author Antonio Goncalves
@@ -30,6 +31,7 @@ import lombok.Setter;
 })
 @XmlRootElement
 @Setter
+@Getter
 public class Customer implements Serializable {
 
     // ======================================
@@ -145,45 +147,7 @@ public class Customer implements Serializable {
     // = Getters & setters =
     // ======================================
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Address getHomeAddress() {
-        return homeAddress;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
 
     // ======================================
     // = Methods hash, equals, toString =
