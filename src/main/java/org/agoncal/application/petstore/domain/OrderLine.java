@@ -1,6 +1,8 @@
 package org.agoncal.application.petstore.domain;
 
 import javax.persistence.*;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -9,23 +11,26 @@ import javax.persistence.*;
  */
 
 @Entity
+@Setter
 public class OrderLine {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @Column(nullable = false)
+    @Setter(AccessLevel.NONE)
     private Integer quantity;
     @OneToOne
     @JoinColumn(name = "item_fk", nullable = false)
     private Item item;
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public OrderLine() {
@@ -37,7 +42,7 @@ public class OrderLine {
     }
 
     // ======================================
-    // =              Public Methods        =
+    // = Public Methods =
     // ======================================
 
     public Float getSubTotal() {
@@ -45,7 +50,7 @@ public class OrderLine {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Long getId() {
@@ -56,32 +61,29 @@ public class OrderLine {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Item getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof OrderLine)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof OrderLine))
+            return false;
 
         OrderLine orderLine = (OrderLine) o;
 
-        if (id != null ? !id.equals(orderLine.id) : orderLine.id != null) return false;
-        if (item != null ? !item.equals(orderLine.item) : orderLine.item != null) return false;
-        if (!quantity.equals(orderLine.quantity)) return false;
+        if (id != null ? !id.equals(orderLine.id) : orderLine.id != null)
+            return false;
+        if (item != null ? !item.equals(orderLine.item) : orderLine.item != null)
+            return false;
+        if (!quantity.equals(orderLine.quantity))
+            return false;
 
         return true;
     }

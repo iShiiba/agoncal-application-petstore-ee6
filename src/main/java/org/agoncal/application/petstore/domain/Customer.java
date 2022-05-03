@@ -13,6 +13,8 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -27,14 +29,16 @@ import java.util.GregorianCalendar;
         @NamedQuery(name = Customer.FIND_ALL, query = "SELECT c FROM Customer c")
 })
 @XmlRootElement
+@Setter
 public class Customer implements Serializable {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @Column(unique = true, nullable = false, length = 10)
     @Login
@@ -61,10 +65,11 @@ public class Customer implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
     @Transient
+    @Setter(AccessLevel.NONE)
     private Integer age;
 
     // ======================================
-    // =             Constants              =
+    // = Constants =
     // ======================================
 
     public static final String FIND_BY_LOGIN = "Customer.findByLogin";
@@ -72,7 +77,7 @@ public class Customer implements Serializable {
     public static final String FIND_ALL = "Customer.findAll";
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public Customer() {
@@ -89,7 +94,7 @@ public class Customer implements Serializable {
     }
 
     // ======================================
-    // =          Lifecycle Methods         =
+    // = Lifecycle Methods =
     // ======================================
 
     /**
@@ -116,14 +121,15 @@ public class Customer implements Serializable {
     }
 
     // ======================================
-    // =              Public Methods        =
+    // = Public Methods =
     // ======================================
 
     /**
      * Given a password, this method then checks if it matches the user
      *
      * @param pwd Password
-     * @throws ValidationException thrown if the password is empty or different than the one
+     * @throws ValidationException thrown if the password is empty or different than
+     *                             the one
      *                             store in database
      */
     public void matchPassword(String pwd) {
@@ -136,7 +142,7 @@ public class Customer implements Serializable {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Long getId() {
@@ -147,65 +153,32 @@ public class Customer implements Serializable {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public String getLastname() {
         return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getTelephone() {
         return telephone;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
     public String getEmail() {
         return email;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
 
     public Address getHomeAddress() {
         return homeAddress;
     }
 
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
-    }
-
     public Date getDateOfBirth() {
         return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
     }
 
     public Integer getAge() {
@@ -213,17 +186,20 @@ public class Customer implements Serializable {
     }
 
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Customer))
+            return false;
 
         Customer customer = (Customer) o;
 
-        if (!login.equals(customer.login)) return false;
+        if (!login.equals(customer.login))
+            return false;
 
         return true;
     }

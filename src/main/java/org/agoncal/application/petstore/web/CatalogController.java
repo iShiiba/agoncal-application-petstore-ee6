@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -18,17 +20,19 @@ import java.util.List;
  */
 
 @Named
-//@RequestScoped TODO should be request scoped
+// @RequestScoped TODO should be request scoped
 @SessionScoped
 @Loggable
 @CatchException
+@Setter
 public class CatalogController extends Controller implements Serializable {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Inject
+    @Setter(AccessLevel.NONE)
     private CatalogService catalogService;
 
     private String categoryName;
@@ -38,11 +42,13 @@ public class CatalogController extends Controller implements Serializable {
     private String keyword;
     private Product product;
     private Item item;
+    @Setter(AccessLevel.NONE)
     private List<Product> products;
+    @Setter(AccessLevel.NONE)
     private List<Item> items;
 
     // ======================================
-    // =              Public Methods        =
+    // = Public Methods =
     // ======================================
 
     public String doFindProducts() {
@@ -67,23 +73,15 @@ public class CatalogController extends Controller implements Serializable {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public Item getItem() {
         return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 
     public List<Product> getProducts() {
@@ -98,31 +96,14 @@ public class CatalogController extends Controller implements Serializable {
         return keyword;
     }
 
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
     public String getCategoryName() {
         return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
     }
 
     public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
-    }
-
     public Long getItemId() {
         return itemId;
     }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
-}

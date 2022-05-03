@@ -6,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -14,10 +15,11 @@ import javax.validation.constraints.Size;
  */
 
 @Embeddable
+@Setter
 public class CreditCard {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Column(name = "credit_card_number", length = 30)
@@ -34,7 +36,7 @@ public class CreditCard {
     private String creditCardExpDate;
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public CreditCard() {
@@ -47,45 +49,36 @@ public class CreditCard {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public String getCreditCardNumber() {
         return creditCardNumber;
     }
 
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
-    }
-
     public CreditCardType getCreditCardType() {
         return creditCardType;
-    }
-
-    public void setCreditCardType(CreditCardType creditCardType) {
-        this.creditCardType = creditCardType;
     }
 
     public String getCreditCardExpDate() {
         return creditCardExpDate;
     }
 
-    public void setCreditCardExpDate(String creditCardExpDate) {
-        this.creditCardExpDate = creditCardExpDate;
-    }
-
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof CreditCard)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof CreditCard))
+            return false;
 
         CreditCard that = (CreditCard) o;
 
-        if (!creditCardNumber.equals(that.creditCardNumber)) return false;
+        if (!creditCardNumber.equals(that.creditCardNumber))
+            return false;
 
         return true;
     }

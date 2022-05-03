@@ -13,6 +13,8 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -24,28 +26,33 @@ import java.util.List;
 @ConversationScoped
 @Loggable
 @CatchException
+@Setter
 public class ShoppingCartController extends Controller implements Serializable {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Inject
     @LoggedIn
+    @Setter(AccessLevel.NONE)
     private Instance<Customer> loggedInCustomer;
     @Inject
+    @Setter(AccessLevel.NONE)
     private CatalogService catalogBean;
     @Inject
+    @Setter(AccessLevel.NONE)
     private OrderService orderBean;
     @Inject
+    @Setter(AccessLevel.NONE)
     private Conversation conversation;
-
+    @Setter(AccessLevel.NONE)
     private List<CartItem> cartItems;
     private CreditCard creditCard = new CreditCard();
     private Order order;
 
     // ======================================
-    // =              Public Methods        =
+    // = Public Methods =
     // ======================================
 
     public String addItemToCart() {
@@ -113,7 +120,6 @@ public class ShoppingCartController extends Controller implements Serializable {
         return getCartItems() == null || getCartItems().size() == 0;
     }
 
-
     public Float getTotal() {
 
         if (cartItems == null || cartItems.isEmpty())
@@ -129,28 +135,19 @@ public class ShoppingCartController extends Controller implements Serializable {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Customer getCustomer() {
         return loggedInCustomer.get();
     }
 
-
     public CreditCard getCreditCard() {
         return creditCard;
     }
 
-    public void setCreditCard(CreditCard creditCard) {
-        this.creditCard = creditCard;
-    }
-
     public Order getOrder() {
         return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
     }
 
     public Conversation getConversation() {

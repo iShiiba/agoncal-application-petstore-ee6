@@ -2,17 +2,18 @@ package org.agoncal.application.petstore.domain;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
  *         http://www.antoniogoncalves.org
  *         --
  */
-
+@Setter
 public class CartItem {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @NotNull
@@ -22,7 +23,7 @@ public class CartItem {
     private Integer quantity;
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public CartItem(Item item, Integer quantity) {
@@ -31,7 +32,7 @@ public class CartItem {
     }
 
     // ======================================
-    // =              Public Methods        =
+    // = Public Methods =
     // ======================================
 
     public Float getSubTotal() {
@@ -39,39 +40,34 @@ public class CartItem {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Item getItem() {
         return item;
     }
 
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
-
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         CartItem cartItem = (CartItem) o;
 
-        if (!item.equals(cartItem.item)) return false;
-        if (!quantity.equals(cartItem.quantity)) return false;
+        if (!item.equals(cartItem.item))
+            return false;
+        if (!quantity.equals(cartItem.quantity))
+            return false;
 
         return true;
     }

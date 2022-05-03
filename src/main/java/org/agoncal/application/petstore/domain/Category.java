@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -19,19 +21,22 @@ import java.util.List;
 @Entity
 @NamedQueries({
         // TODO fetch doesn't work with GlassFIsh
-//        @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c LEFT JOIN FETCH c.products WHERE c.name = :pname"),
+        // @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c
+        // LEFT JOIN FETCH c.products WHERE c.name = :pname"),
         @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c WHERE c.name = :pname"),
         @NamedQuery(name = Category.FIND_ALL, query = "SELECT c FROM Category c")
 })
 @XmlRootElement
+@Setter
 public class Category {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @Column(nullable = false, length = 30)
     @NotNull
@@ -46,14 +51,14 @@ public class Category {
     private List<Product> products;
 
     // ======================================
-    // =             Constants              =
+    // = Constants =
     // ======================================
 
     public static final String FIND_BY_NAME = "Category.findByName";
     public static final String FIND_ALL = "Category.findAll";
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public Category() {
@@ -65,7 +70,7 @@ public class Category {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Long getId() {
@@ -76,16 +81,8 @@ public class Category {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public void addProduct(Product product) {
@@ -98,22 +95,21 @@ public class Category {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Category)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Category))
+            return false;
 
         Category category = (Category) o;
 
-        if (!name.equals(category.name)) return false;
+        if (!name.equals(category.name))
+            return false;
 
         return true;
     }

@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import lombok.AccessLevel;
+import lombok.Setter;
 
 /**
  * @author Antonio Goncalves
@@ -22,14 +24,16 @@ import javax.xml.bind.annotation.XmlTransient;
         @NamedQuery(name = Item.FIND_ALL, query = "SELECT i FROM Item i")
 })
 @XmlRootElement
+@Setter
 public class Item {
 
     // ======================================
-    // =             Attributes             =
+    // = Attributes =
     // ======================================
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
     private Long id;
     @Column(nullable = false, length = 30)
     @NotNull
@@ -48,7 +52,7 @@ public class Item {
     private Product product;
 
     // ======================================
-    // =             Constants              =
+    // = Constants =
     // ======================================
 
     public static final String FIND_BY_PRODUCT_ID = "Item.findByProductId";
@@ -56,7 +60,7 @@ public class Item {
     public static final String FIND_ALL = "Item.findAll";
 
     // ======================================
-    // =            Constructors            =
+    // = Constructors =
     // ======================================
 
     public Item() {
@@ -71,7 +75,7 @@ public class Item {
     }
 
     // ======================================
-    // =         Getters & setters          =
+    // = Getters & setters =
     // ======================================
 
     public Long getId() {
@@ -82,55 +86,39 @@ public class Item {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Float getUnitCost() {
         return unitCost;
-    }
-
-    public void setUnitCost(Float unitCost) {
-        this.unitCost = unitCost;
     }
 
     public String getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
     public Product getProduct() {
         return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     // ======================================
-    // =   Methods hash, equals, toString   =
+    // = Methods hash, equals, toString =
     // ======================================
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Item)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof Item))
+            return false;
 
         Item item = (Item) o;
 
-        if (!imagePath.equals(item.imagePath)) return false;
-        if (!name.equals(item.name)) return false;
+        if (!imagePath.equals(item.imagePath))
+            return false;
+        if (!name.equals(item.name))
+            return false;
 
         return true;
     }
